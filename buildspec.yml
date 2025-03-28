@@ -1,11 +1,5 @@
 version: 2.0
 phases:
-    install:
-        runtime-versions:
-            python: 3.9-slim
-        commands:
-            - echo "Installing dependencies"
-            - pip install -r requirements.txt
     pre_build:
         commands:
             - echo "Login to ECR"
@@ -23,6 +17,6 @@ phases:
             - echo Pushing the Docker image...
             - docker push $REPOSITORY_URI:$IMAGE_TAG
             - echo Writing image definitions file...
-            - printf '[{"name":"flask-gpt-container","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+            - printf '[{"name":"flask-gpt-ec2-container","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
     files: imagedefinitions.json
