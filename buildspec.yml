@@ -3,8 +3,8 @@ phases:
     pre_build:
         commands:
             - echo "Login to ECR"
-            - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
-            - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/python/flask_gpt_ec2
+            - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 471112585965.dkr.ecr.eu-central-1.amazonaws.com
+            - REPOSITORY_URI=471112585965.dkr.ecr.eu-central-1.amazonaws.com/python/flask_gpt_ec2
             - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
     build:
         commands:
