@@ -2,11 +2,11 @@
 
 echo "Starting deployment..."
 
-# Pull OpenAI key from Secrets Manager
+# Pull OpenAI key from Secrets Manager (extract the value only)
 OPENAI_API_KEY=$(aws secretsmanager get-secret-value \
   --secret-id OPENAI_API_KEY \
   --query SecretString \
-  --output text)
+  --output text | jq -r '.OPENAI_API_KEY')
 
 # Log in to ECR (non-TTY safe)
 aws ecr get-login-password --region eu-central-1 | \
